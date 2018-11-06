@@ -53,6 +53,14 @@ class RgClock extends PolymerElement {
           left: 0;
         }
 
+        .pointer {
+          /* Round the edges of the pointers. */
+          border-top-left-radius: 50%;
+          border-top-right-radius: 50%;
+          border-bottom-left-radius: 30%;
+          border-bottom-right-radius: 30%;
+        }
+
         .hours {
           background: #000;
           height: 20%;
@@ -61,6 +69,7 @@ class RgClock extends PolymerElement {
           top: 30%;
           transform-origin: 50% 100%;
           width: 2.5%;
+          border-radius: 40%
         }
 
         .minutes {
@@ -104,18 +113,18 @@ class RgClock extends PolymerElement {
       
       <div class="clock">
         <div class="hours-container">
-          <div class="hours"
+          <div class="hours pointer"
                style$="transform: rotateZ([[_hourAngle]]deg);"></div>
         </div>
 
         <div class="minutes-container">
-          <div class="minutes" 
+          <div class="minutes pointer" 
                style$="transform: rotateZ([[_minuteAngle]]deg);">
           </div>
         </div>
 
         <div class="seconds-container">
-          <div class="seconds"
+          <div class="seconds pointer"
                style$="transform: rotateZ([[_secondAngle]]deg);">
           </div>
         </div>
