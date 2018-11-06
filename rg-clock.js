@@ -171,23 +171,6 @@ class RgClock extends PolymerElement {
     const degreesPerSecond = 360 / 60;
     return degreesPerSecond * time.getSeconds();
   }
-
-  _set(newTime) {
-    const angles = new Map();
-    angles.set('hours', newTime.getHours() * 30 + newTime.getMinutes() / 2);
-    angles.set('minutes', newTime.getMinutes() * 6);
-    angles.set('seconds', newTime.getSeconds() * 6);
-
-    angles.forEach((angle, handName) => {
-      console.log(this.$$(`.${handName}`));
-      const hand = this.getElementsByClassName(handName)[0];
-      hand.style.setProperty('transform', `rotateZ(${angle})`);
-    });
-  }
-
-  ready() {
-    super.ready();
-  }
 }
 
 window.customElements.define('rg-clock', RgClock);
