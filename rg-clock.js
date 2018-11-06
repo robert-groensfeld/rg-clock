@@ -124,27 +124,32 @@ class RgClock extends PolymerElement {
   }
   static get properties() {
     return {
-      time: {
+      /** Time on the clock. Format: "15:03:42". */
+      time: String,
+
+      /** Time on the clock. */
+      _time: {
         type: Date,
         value: new Date(),
+        computed: "_parseTime(time)",
       },
 
       /** Angle of the hour pointer. */
       _hourAngle: {
         type: Number,
-        computed: '_getHourAngle(time)',
+        computed: '_getHourAngle(_time)',
       },
 
       /** Angle of the minute pointer. */
       _minuteAngle: {
         type: Number,
-        computed: '_getMinuteAngle(time)',
+        computed: '_getMinuteAngle(_time)',
       },
 
       /** Angle of the seconds pointer. */
       _secondAngle: {
         type: Number,
-        computed: '_getSecondAngle(time)',
+        computed: '_getSecondAngle(_time)',
       }
     };
   }
@@ -170,6 +175,14 @@ class RgClock extends PolymerElement {
   _getSecondAngle(time) {
     const degreesPerSecond = 360 / 60;
     return degreesPerSecond * time.getSeconds();
+  }
+
+  /** Converts a time string to a Date. */
+  _parseTime(time) {
+    const date = new Date();
+    const [hours, minutes, seconds] = time.split(':');
+    date.setHours(hours, minutes, seconds);
+    return date;
   }
 }
 
