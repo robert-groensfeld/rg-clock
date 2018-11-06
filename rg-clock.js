@@ -123,11 +123,19 @@ class RgClock extends PolymerElement {
           </div>
         </div>
 
+<<<<<<< HEAD
         <div class="seconds-container">
           <div class="seconds pointer"
                style$="transform: rotateZ([[_secondAngle]]deg);">
+=======
+        <template is="dom-if" if="[[!noSeconds]]">
+          <div class="seconds-container">
+            <div class="seconds"
+                style$="transform: rotateZ([[_secondAngle]]deg);">
+            </div>
+>>>>>>> Allow removing the seconds pointer
           </div>
-        </div>
+        </template>
       </div>
     `;
   }
@@ -141,6 +149,12 @@ class RgClock extends PolymerElement {
         type: Date,
         value: new Date(),
         computed: "_parseTime(time)",
+      },
+
+      /** Do not display the seconds pointer. */
+      noSeconds: {
+        type: Boolean,
+        value: false,
       },
 
       /** Angle of the hour pointer. */
