@@ -1,0 +1,193 @@
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+/**
+ * `rg-clock`
+ * An analog clock.
+ *
+ * @customElement
+ * @polymer
+ * @demo demo/index.html
+ */
+class RgClock extends PolymerElement {
+  static get template() {
+    const date = new Date();
+    return html`
+      <style>
+        :host {
+          display: block;
+        }
+
+        .clock {
+          /* Center clock */
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+
+          border: 4px solid black;
+          border-radius: 50%;
+          background: #fff url(https://cssanimation.rocks/images/posts/clocks/ios_clock.svg) no-repeat center;
+          background-size: 88%;
+          height: 20em;
+          position: relative;
+          width: 20em;
+        }
+
+        .clock:after {
+          background: #000;
+          border-radius: 50%;
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 5%;
+          height: 5%;
+          z-index: 10;
+        }
+
+        .minutes-container, .hours-container, .seconds-container {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+
+        .hours {
+          background: #000;
+          height: 20%;
+          left: 48.75%;
+          position: absolute;
+          top: 30%;
+          transform-origin: 50% 100%;
+          width: 2.5%;
+        }
+
+        .minutes {
+          background: #000;
+          height: 40%;
+          left: 49%;
+          position: absolute;
+          top: 10%;
+          transform-origin: 50% 100%;
+          width: 2%;
+        }
+
+        .seconds {
+          background: #000;
+          height: 45%;
+          left: 49.5%;
+          position: absolute;
+          top: 14%;
+          transform-origin: 50% 80%;
+          width: 1%;
+          z-index: 8;
+        }
+
+        @keyframes rotate {
+          100% {
+            transform: rotateZ(360deg);
+          }
+        }
+
+        .hours-container {
+          animation: rotate 43200s infinite linear;
+        }
+        .minutes-container {
+          animation: rotate 3600s infinite linear;
+        }
+        .seconds-container {
+          animation: rotate 60s infinite linear;
+        }
+
+      </style>
+      
+      <div class="clock">
+        <div class="hours-container">
+          <div class="hours"
+               style$="transform: rotateZ([[_hourAngle]]deg);"></div>
+        </div>
+
+        <div class="minutes-container">
+          <div class="minutes" 
+               style$="transform: rotateZ([[_minuteAngle]]deg);">
+          </div>
+        </div>
+
+        <div class="seconds-container">
+          <div class="seconds"
+               style$="transform: rotateZ([[_secondAngle]]deg);">
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  static get properties() {
+    return {
+      time: {
+        type: Date,
+        value: new Date(),
+      },
+
+      /** Angle of the hour pointer. */
+      _hourAngle: {
+        type: Number,
+        computed: '_getHourAngle(time)',
+      },
+
+      /** Angle of the minute pointer. */
+      _minuteAngle: {
+        type: Number,
+        computed: '_getMinuteAngle(time)',
+      },
+
+      /** Angle of the seconds pointer. */
+      _secondAngle: {
+        type: Number,
+        computed: '_getSecondAngle(time)',
+      }
+    };
+  }
+
+  /** Gets the angle of the hour pointer for the given time. */
+  _getHourAngle(time) {
+    const degreesPerHour = 360 / 12;
+    const degreesPerMinute = degreesPerHour / 60;
+
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+
+    return hours * degreesPerHour + minutes * degreesPerMinute;
+  }
+
+  /** Gets the angle of the minute pointer for the given time. */
+  _getMinuteAngle(time) {
+    const degreesPerMinute = 360 / 60;
+    return degreesPerMinute * time.getMinutes();
+  }
+
+  /** Gets the angle of the seconds pointer for the given time. */
+  _getSecondAngle(time) {
+    const degreesPerSecond = 360 / 60;
+    return degreesPerSecond * time.getSeconds();
+  }
+
+  _set(newTime) {
+    const angles = new Map();
+    angles.set('hours', newTime.getHours() * 30 + newTime.getMinutes() / 2);
+    angles.set('minutes', newTime.getMinutes() * 6);
+    angles.set('seconds', newTime.getSeconds() * 6);
+
+    angles.forEach((angle, handName) => {
+      console.log(this.$$(`.${handName}`));
+      const hand = this.getElementsByClassName(handName)[0];
+      hand.style.setProperty('transform', `rotateZ(${angle})`);
+    });
+  }
+
+  ready() {
+    super.ready();
+  }
+}
+
+window.customElements.define('rg-clock', RgClock);
