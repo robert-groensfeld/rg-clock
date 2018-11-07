@@ -18,22 +18,34 @@ class RgClock extends PolymerElement {
         }
 
         .clock {
-          /* Center clock */
+          /* Centers clock. */
           display: block;
           margin-left: auto;
           margin-right: auto;
-
-          border: 4px solid black;
+          
+          /** Border around the clock face. */
+          border: var(--border, 4px solid black);
           border-radius: 50%;
-          background: #fff url(https://cssanimation.rocks/images/posts/clocks/ios_clock.svg) no-repeat center;
+
+          /** Backround color of the clock face. */
+          background-color: var(--bg-color, white);
+          
+          /** Image containing the clock face. */
+          background-image: var(--bg-img, none);
+          background-repeat: no-repeat;
+          background-position: center;
           background-size: 88%;
-          height: 20em;
+          
           position: relative;
-          width: 20em;
+
+          /** Clock size. */
+          width: var(--size, 20em);
+          height: var(--size, 20em);
         }
 
         .clock:after {
-          background: #000;
+          /* Draw a dot in the middle of the clock face. */
+          background: var(--dot-color, black);
           border-radius: 50%;
           content: "";
           position: absolute;
@@ -62,7 +74,8 @@ class RgClock extends PolymerElement {
         }
 
         .hours {
-          background: #000;
+          /** Color of the hours pointer. */
+          background: var(--hrs-color, black);
           height: 20%;
           left: 48.75%;
           position: absolute;
@@ -73,7 +86,8 @@ class RgClock extends PolymerElement {
         }
 
         .minutes {
-          background: #000;
+          /** Color of the minutes pointer. */
+          background: var(--min-color, black);
           height: 40%;
           left: 49%;
           position: absolute;
@@ -83,7 +97,8 @@ class RgClock extends PolymerElement {
         }
 
         .seconds {
-          background: #000;
+          /** Color of the seconds pointer. */
+          background: var(--sec-color, black);
           height: 45%;
           left: 49.5%;
           position: absolute;
