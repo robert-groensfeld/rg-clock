@@ -3,7 +3,10 @@
   "description": "An analog clock.",
   "main": "rg-clock.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "debug": ">=2.6.9",
+    "lodash": ">=4.17.5",
+    "growl": ">=1.10.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
