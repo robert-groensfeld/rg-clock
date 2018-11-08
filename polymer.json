@@ -1,8 +1,19 @@
 {
-  "npm": true,
+  "entrypoint": "index.html",
+  "shell": "rg-clock.js",
+  "fragments": [
+    "*.js",
+    "index.html",
+    "demo/*"
+  ],
   "lint": {
-    "rules": [
-      "polymer-3"
-    ]
-  }
+    "rules": ["polymer-3"]
+  },
+  "sources": [
+    "node_modules/@polymer/iron-demo-helpers/**/*.js",
+    "node_modules/@webcomponents/**/*.js",
+    "node_modules/wct-browser-legacy/**/*.js"
+  ],
+  "moduleResolution": "node",
+  "npm": true
 }
