@@ -2,12 +2,21 @@
   "name": "rg-clock",
   "description": "An analog clock.",
   "main": "rg-clock.js",
+  "scripts": {
+    "analyze": "polymer analyze > analysis.json",
+    "copy:analysis": "cp analysis.json pages-dist/",
+    "copy:pages-dist": "cp -r build/default/ pages-dist/",
+    "prepages": "yarn analyze && polymer build && yarn copy:pages-dist && yarn copy:analysis",
+    "pages": "gh-pages -d pages-dist",
+    "postpages": "rm -rf pages-dist && rm -rf build",
+  },
   "dependencies": {
     "@polymer/polymer": "^3.0.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "gh-pages": "^1.0.0",
     "wct-browser-legacy": "^1.0.0"
   }
 }
