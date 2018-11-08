@@ -6,7 +6,7 @@
     "analyze": "polymer analyze > analysis.json",
     "copy:analysis": "cp analysis.json pages-dist/",
     "copy:pages-dist": "cp -r build/default/ pages-dist/",
-    "prepages": "yarn analyze && polymer build && yarn copy:pages-dist && yarn copy:analysis",
+    "prepages": "npm run analyze && polymer build && npm run copy:pages-dist && npm run copy:analysis",
     "pages": "gh-pages -d pages-dist",
     "postpages": "rm -rf pages-dist && rm -rf build",
   },
