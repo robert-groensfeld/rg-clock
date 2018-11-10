@@ -11,6 +11,10 @@
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "ghpages": "0.0.10",
     "wct-browser-legacy": "^1.0.0"
+  },
+  "scripts": {
+    "publish": "ghpages -p build/demo"
   }
 }
