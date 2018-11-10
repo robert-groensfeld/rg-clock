@@ -1,8 +1,31 @@
 {
+  "name": "demo",
   "npm": true,
   "lint": {
     "rules": [
       "polymer-3"
     ]
-  }
+  },
+  "entrypoint": "demo/index.html",
+  "shell": "rg-clock.js",
+  "builds": [
+    {
+      "name": "demo",
+      "preset": "es6-unbundled",
+      "html": { "minify": false },
+      "css": { "minify": false },
+      "js": { "minify": false }
+    }
+  ],
+  "fragments": [
+    "node_modules/@polymer/**/*",
+    "node_modules/@webcomponents/**/*",
+    "node_modules/marked/**/*",
+    "node_modules/prismjs/**/*"
+  ],
+  "sources": [
+    "index.html",
+    "res/**/*",
+    "demo/**/*"
+  ]
 }
