@@ -29,3 +29,7 @@ Run `polymer test` to run your application's test suite locally.
 
 Special thanks go to [Donovan](http://hop.ie/) for his excellent 
 [tutorial](https://cssanimation.rocks/clocks/) on creating clocks with css.
+
+I also want to thank [Westbrook Johnson](https://github.com/Westbrook) for 
+helping me build the demo and introducing me to the wonderful 
+[ghpages](https://www.npmjs.com/package/ghpages) package.
