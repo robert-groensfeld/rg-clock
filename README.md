@@ -1,6 +1,7 @@
 # \<rg-clock\>
 
-An analog clock for Polymer 3.0.
+An [analog clock](https://robert-groensfeld.github.io/rg-clock/index.html) 
+for Polymer 3.0.
 
 ## Prerequisites
 
